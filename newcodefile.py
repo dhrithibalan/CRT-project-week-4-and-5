@@ -1,3 +1,5 @@
+from random import choice
+
 # 1. print "let's play hangman"
 print("Let's play Hangman!")
 
