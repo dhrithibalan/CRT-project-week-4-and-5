@@ -11,3 +11,4 @@ wordfile.close()
 # 3. make dashes for num letters
 def make_dashes(word):
   return "-"*len(word)
+
