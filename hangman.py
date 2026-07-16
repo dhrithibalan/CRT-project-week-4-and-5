@@ -61,6 +61,13 @@ def play_hangman():
         if (len(guess) != 1) or (guess not in alphabet):
             if guess == "help":
                 print("Guessed letters: ", guessed_letters)
+            if guess == "guess answer":
+                if secret_word == input("Type your guess:").lower():
+                    print("You win")
+                else:
+                    print("You lose")
+                replay_check()
+
             else:
                 print("Please enter one letter from a-z")
             continue
