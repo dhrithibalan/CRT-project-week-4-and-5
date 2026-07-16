@@ -8,9 +8,17 @@ wordfile = open("wordbank.txt", "r")
 wordbank = wordfile.read().splitlines()  # list of words: ['word1', 'word2', 'word3', 'etc']
 wordfile.close()
 
+def replay_check():
+    print("Would you like to play again? (yes/no)")
+    response = input("Response: ").lower()
+    if response == "yes":
+        play_hangman()
+    else:
+        exit()
+
 # 3. make dashes for num letters
 def make_dashes(word):
-    return "-" * len(word)
+    return "_" * len(word)
 
 def play_hangman():
     # pick random word from word bank
@@ -30,15 +38,16 @@ def play_hangman():
             if letter in guessed_letters:
                 display += letter
             else:
-                display += '- '
+                display += '_ '
 
         # print current word + guesses
         print(f"\nWord: {display}")
         print(f"\nGuesses remaining: {guesses_left}")
 
         # check if player won, so no more dashes
-        if '-' not in display:
+        if '_' not in display:
             print("You won!")
+            replay_check()
             break
 
         guess = input("Guess a letter: ").lower()
@@ -59,5 +68,6 @@ def play_hangman():
             guesses_left -= 1
     else:
         print(f"Game over. The word was {secret_word}")
+        replay_check()
 
 play_hangman()
