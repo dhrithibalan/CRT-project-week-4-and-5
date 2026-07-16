@@ -8,6 +8,7 @@ wordfile = open("wordbank.txt", "r")
 wordbank = wordfile.read().splitlines()  # list of words: ['word1', 'word2', 'word3', 'etc']
 wordfile.close()
 
+# checks for replay with user upon game completion
 def replay_check():
     print("Would you like to play again? (yes/no)")
     response = input("Response: ").lower()
@@ -50,6 +51,7 @@ def play_hangman():
             replay_check()
             break
 
+        # case-sensitive check to lowercase
         guess = input("Guess a letter: ").lower()
 
         # other input possibilities: not one letter and not in alphabet
@@ -57,6 +59,7 @@ def play_hangman():
             print("Please enter one letter from a-z")
             continue
 
+        # checks for duplicate guesses
         if guess in guessed_letters:
             print("You already guessed that")
             continue
@@ -66,8 +69,10 @@ def play_hangman():
         if guess not in secret_word:
             print(f"{guess} is not in the word")
             guesses_left -= 1
+    
+    # when user runs out of lives
     else:
-        print(f"Game over. The word was {secret_word}")
+        print(f"Out of lives- game over. The word was {secret_word}")
         replay_check()
 
 play_hangman()
