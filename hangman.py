@@ -1,7 +1,10 @@
 from random import choice
 
 # 1. print "let's play hangman"
-print("Let's play Hangman!")
+print("Let's play Hangman! You are allowed to enter single letter guesses, help, or guess answer.")
+print("Help allows you to see previous guesses.")
+print("Guess answer lets you guess the word. Note: you will lose if this is wrong")
+print("You have 6 lives. Let the game begin!")
 
 # 2. create wordbank
 wordfile = open("wordbank.txt", "r")
@@ -46,7 +49,7 @@ def play_hangman():
 
         # print current word + guesses
         print(f"\nWord: {display}")
-        print(f"\nGuesses remaining: {guesses_left}")
+        print(f"\nLives remaining: {guesses_left}")
 
         # check if player won, so no more dashes
         if '_' not in display:
@@ -61,13 +64,13 @@ def play_hangman():
         if (len(guess) != 1) or (guess not in alphabet):
             if guess == "help":
                 print("Guessed letters: ", guessed_letters)
-            if guess == "guess answer":
-                if secret_word == input("Type your guess:").lower():
+            elif guess == "guess answer":
+                guess_word = input("Type your guess: ").lower()
+                if secret_word == guess_word:
                     print("You win")
                 else:
-                    print("You lose")
+                    print(f"You lose- The word was {secret_word}")
                 replay_check()
-
             else:
                 print("Please enter one letter from a-z")
             continue
